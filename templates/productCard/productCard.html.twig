@@ -1,0 +1,16 @@
+{% block content %}
+
+    <div class="col-3 px-3 pt-3">
+        <div class="card text-center h-100">
+            {% for image in product.productImages %}
+                <a href="{{ url('product',{'product':product.id}) }}"><img class="card-img pt-2" src="{{ asset('images/'~image.image) }}" alt="{{ product.name }}" style="width: 200px; height: 180px;"></a>
+            {% endfor %}
+                <div class="card-body text-center">
+                <h3 class="card-title">{{ product.name }}</h3>
+                <h5>{{ product.price }} <span>Lei</span></h5>
+                <a href="{{ url('cart_add', {'product':product.id}) }}" class="btn btn-primary mt-4">Adauga in Cos</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

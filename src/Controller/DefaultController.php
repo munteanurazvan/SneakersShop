@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,5 +34,17 @@ class DefaultController extends AbstractController
             'categories'=>$categoryRepository->findAll ()
 
         ]);
+    }
+    /**
+     * @Route("/product/{product}", name="product")
+     */
+    public function product(Product $product,ProductRepository $productRepository,CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('default/product.html.twig',
+            [
+                'categories'=>$categoryRepository->findAll(),
+                'product'=>$product
+
+            ]);
     }
 }

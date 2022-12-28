@@ -3,20 +3,15 @@
 {% block title %}Hello DefaultController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    This is {{ category.name }} page
-    <ul>
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-2">
+            <h3>{{ category.name }}</h3>
+        </div>
         {% for product in category.getProducts() %}
-            <li>
-                {{ product.name }}
-                <a class="btn btn-primary" href="{{ url('cart_add',{'product':product.id}) }}">Adauga in cos</a>
-            </li>
+            {{ include ('productCard/productCard.html.twig') }}
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
