@@ -61,4 +61,16 @@ class CartController extends AbstractController
         $cartService->empty ();
         return $this->redirectToRoute ('cart');
     }
+
+    /**
+     * @Route("/cart/order", name="cart_order")
+     */
+    public function order(CartService $cartService, CategoryRepository $categoryRepository): Response
+    {
+        $cartService->empty ();
+        return $this->render('cart/order.html.twig',
+            [
+                'categories'=>$categoryRepository->findAll ()
+            ]);
+    }
 }

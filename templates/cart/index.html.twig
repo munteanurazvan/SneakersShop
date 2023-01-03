@@ -3,13 +3,9 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
+<div class="container">
     <table class="table">
+        {% if cartService.getCartCount > 0 %}
         <tr>
             <td>Nume produs</td>
             <td>Pret</td>
@@ -42,7 +38,7 @@
             <td></td>
             <td></td>
             <td>
-                <strike>{{ cartService.getCartTotal() }} RON</strike> (-10%)
+                <div>(-10%)</div>
                 <hr/>
                 {{ cartService.getPromoCartTotal() }} RON
             </td>
@@ -50,5 +46,15 @@
         </tr>
     </table>
     <a class="btn btn-danger" href="{{ url('cart_empty') }}">Sterge cos</a>
+    {% if app.user %}
+        <a class="btn btn-primary float-right" href="{{ url('cart_order') }}">Finalizeaza comanda</a>
+    {% else %}
+        <a class="btn btn-primary float-right" href="{{ path('app_login') }}">Finalizeaza comanda</a>
+    {% endif %}
+    {% else %}
+        <div>
+            <span>Nu ai produse in cos</span>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

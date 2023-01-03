@@ -24,6 +24,17 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('default/contact.html.twig',
+            [
+                'categories'=>$categoryRepository->findAll(),
+            ]);
+    }
+
+    /**
      * @Route("/category/{category}", name="category")
      */
     public function category(Category $category, CategoryRepository $categoryRepository): Response
