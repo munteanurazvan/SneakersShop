@@ -71,4 +71,32 @@
     <div class="container">
         <img class="align-content-center" width="550px" height="150px" src="{{ asset('images/10off.jpg') }}" alt="10off.jpg"/><img width="550px" height="150px" src="{{ asset('images/10off.jpg') }}" alt="10off.jpg"/>
     </div>
+    <div class="container text-center mb-2 pr-0 pl-4">
+    <style>
+        p {
+            text-align: center;
+            font-size: 60px;
+            background-color: lightseagreen;
+            margin-top: 0px;
+        }
+    </style>
+        <p id="demo">SALES END IN </p>
+        <script>
+            var countDownDate = new Date("Jan 31, 2023 23:59:59").getTime();
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("demo").innerHTML = "SALES END IN -> " + days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s " ;
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        </script>
+    </div>
 {% endblock %}

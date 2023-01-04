@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}{{ category.name }}{% endblock %}
 
 {% block body %}
 
@@ -9,9 +9,15 @@
         <div class="col-12 mt-2">
             <h3>{{ category.name }}</h3>
         </div>
-        {% for product in category.getProducts() %}
-            {{ include ('productCard/productCard.html.twig') }}
-        {% endfor %}
+        <div class="row">
+            <div class="col-2 ml-3">
+                <h5>Filtre</h5>
+                {{ form(form) }}
+            </div>
+                {% for product in category.getProducts() %}
+                    {{ include ('productCard/productCard.html.twig') }}
+                {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
