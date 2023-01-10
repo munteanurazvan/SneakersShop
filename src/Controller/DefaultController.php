@@ -59,7 +59,7 @@ class DefaultController extends AbstractController
                     ->setParameter ('categories', $data['categories']);
             }
 
-            if ($data['name']){
+            if (isset($data['name'])){
                 $qb->andWhere ('p.name like :name')
                     ->setParameter ('name', '%'.$data['name'].'%');
             }
